@@ -3,6 +3,7 @@
 	{
 		"sitename": "CynthiaCMS",
 		"stylefile": "cynthia.css",
+		"favicon": "png/cynthia.png",
 		"handlebar": {
 			"post": "default",
 			"page": "cynthia-docs"

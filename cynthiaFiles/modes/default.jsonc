@@ -2,6 +2,7 @@
 	"default",
 	{
 		"sitename": "My Cynthia site!",
+		"favicon": "png/home.png",
 		"stylefile": "default.css",
 		"handlebar": {
 			"post": "default",
