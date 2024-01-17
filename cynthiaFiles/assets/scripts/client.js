@@ -35,6 +35,30 @@ function mobileorientation() {
 }
 
 if (document.getElementById("cynthiapageinfoshowdummyelem") != null) {
+    let post_tags_htm = "";
+    pagemetainfo.tags.forEach((tag) => {
+        if (tag !== pagemetainfo.tags[0]) {
+            post_tags_htm = post_tags_htm + `, <code class="post_tag">${tag}</code>`
+        } else {
+            post_tags_htm = post_tags_htm + `<code class="post_tag">${tag}</code>`
+        }
+    });
+    post_html = document.querySelector("main");
+    post_html.innerHTML =
+	`${post_html.innerHTML}
+	<hr>
+	<div id="taglist">
+	<h4>Tags</h4>
+	${post_tags_htm}
+	</div>
+	`
+    post_tags = document.getElementsByClassName("post_tag");
+    for (let i = post_tags.length - 1; i >= 0; i--) {
+        const newpost_tag = document.createElement("a");
+        newpost_tag.href = `/t/${post_tags.item(i).innerText}`;
+        newpost_tag.innerHTML = `<code class='post_tag'>${post_tags.item(i).innerText}</code>`;
+        post_tags.item(i).parentNode.replaceChild(newpost_tag, post_tags.item(i));
+    }
     let pageinfosidebarelem = document.getElementById(
         "cynthiapageinfoshowdummyelem"
     );
