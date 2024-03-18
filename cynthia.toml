@@ -20,6 +20,7 @@ PORT=3000
 # Generator rules set how Cynthia generates web pages.
 [generator]
 site-baseurl = ""
+og-site-name = "My Cynthia Site!"
     [generator.meta]
 
     # Enables or disables pagetags in HTML metatags, these are officially supposed to be good for finding a website, but have been known to 
