@@ -8,7 +8,7 @@ This script is embedded into any page Cynthia serves, always just before the clo
 setInterval(() => {
     const elements = document.getElementsByClassName('unparsedtimestamp');
     for (let i = elements.length - 1; i >= 0; i--) {
-        let timestamp = parseInt(elements[i].textContent);
+        const timestamp = Number.parseInt(elements[i].textContent);
         console.log("Parsing timestamp.");
         const jstimestamp = timestamp * 1000;
         const dateObject = new Date(jstimestamp);
@@ -30,19 +30,19 @@ function mobileorientation() {
         return 0;
     }
     console.error(
-        "Could not determine 'mobilescreen()' from css value '" + csssays + "'."
+        `Could not determine 'mobilescreen()' from css value '${csssays}'.`
     );
 }
 
 if (document.getElementById("cynthiapageinfoshowdummyelem") != null) {
     let post_tags_htm = "";
-    pagemetainfo.tags.forEach((tag) => {
+    for (tag of pagemetainfo.tags) {
         if (tag !== pagemetainfo.tags[0]) {
-            post_tags_htm = post_tags_htm + `, <code class="post_tag">${tag}</code>`
+            post_tags_htm = `${post_tags_htm}, <code class="post_tag">${tag}</code>`
         } else {
-            post_tags_htm = post_tags_htm + `<code class="post_tag">${tag}</code>`
+            post_tags_htm = `${post_tags_htm}<code class="post_tag">${tag}</code>`
         }
-    });
+    };
     post_html = document.querySelector("main");
     post_html.innerHTML =
 	`${post_html.innerHTML}
@@ -76,7 +76,7 @@ if (document.getElementById("cynthiapageinfoshowdummyelem") != null) {
     }
     let dates = "";
     if (typeof pagemetainfo.dates !== "undefined") {
-        if (typeof pagemetainfo.dates.altered == "undefined" || pagemetainfo.dates.altered == null || pagemetainfo.dates.published === pagemetainfo.dates.altered) {
+        if (typeof pagemetainfo.dates.altered === "undefined" || pagemetainfo.dates.altered == null || pagemetainfo.dates.published === pagemetainfo.dates.altered) {
             dates = `<li>Posted: <span class="preparsedtimestamp">${(new Date((pagemetainfo.dates.published) * 1000).toLocaleString())}</span></li>`
         } else {
             dates = `
@@ -86,7 +86,7 @@ if (document.getElementById("cynthiapageinfoshowdummyelem") != null) {
         }
     }
     pageinfosidebarelem.innerHTML = `
-    <span class="not-on-mobile" style="position:absolute;right:0;top:0;font-size: 3em; cursor: pointer; ">&#8665;</span>
+    <span class="not-on-mobile" style="position:absolute;right:0;top:0;font-size: 3em; cursor: pointer; " onclick="pageinfosidebar_rollup()">&#8665;</span>
     <p class="pageinfo-title">${pagemetainfo.title}</p>
     <ul>
       <li>Author: ${authorthumbnail} ${pagemetainfo.author.name}</li>
